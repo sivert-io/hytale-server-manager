@@ -1,63 +1,63 @@
-/* Hytale Server Manager theme - Blue hue from kgs-icon.svg (#C4D8FB) */
+/* Hytale Server Manager theme - Pink/magenta hue from hsm-icon.svg (#FFC7EF) */
 
 :root {
   /* Light mode overrides */
-  --md-primary-fg-color: hsl(218, 87%, 70%);        /* Blue for light mode (#C4D8FB base) */
-  --md-primary-fg-color--light: hsl(218, 97%, 92%); /* Light blue (#E8F0FF) */
-  --md-primary-fg-color--dark: hsl(218, 67%, 40%);  /* Dark blue (#4A6FA5) */
-  --md-accent-fg-color: hsl(218, 92%, 77%);         /* Bright blue for accents (#D4E4FF) */
-  --md-typeset-a-color: hsl(218, 92%, 77%);         /* Links use accent blue in light mode */
+  --md-primary-fg-color: hsl(317, 99%, 75%);        /* Pink/magenta for light mode (#FFC7EF base) */
+  --md-primary-fg-color--light: hsl(317, 100%, 94%); /* Light pink (#FFF5FC) */
+  --md-primary-fg-color--dark: hsl(317, 79%, 40%);  /* Dark pink (#B8459F) */
+  --md-accent-fg-color: hsl(317, 100%, 79%);         /* Bright pink for accents (#FFD4F5) */
+  --md-typeset-a-color: hsl(317, 100%, 79%);         /* Links use accent pink in light mode */
 }
 
 [data-md-color-scheme="slate"] {
   /* Dark mode */
 
-  /* Header/Navbar - dark blue-tinted background */
-  --md-primary-fg-color: hsl(218, 30%, 8%);         /* Dark blue-tinted background (#0F1419) */
-  --md-primary-fg-color--light: hsl(218, 70%, 89%); /* Light blue (#D4E4FF) */
-  --md-primary-fg-color--dark: hsl(218, 15%, 5%);  /* Very dark blue (#0A0D12) */
-  --md-primary-bg-color: hsl(218, 20%, 90%);        /* Light blue-gray (#E6EAF0) */
+  /* Header/Navbar - dark pink/magenta-tinted background */
+  --md-primary-fg-color: hsl(317, 35%, 8%);         /* Dark pink-tinted background (#1A0F17) */
+  --md-primary-fg-color--light: hsl(317, 85%, 89%); /* Light pink (#FFE5F7) */
+  --md-primary-fg-color--dark: hsl(317, 20%, 5%);  /* Very dark pink (#120A10) */
+  --md-primary-bg-color: hsl(317, 25%, 90%);        /* Light pink-gray (#F5E6F0) */
 
-  /* Accent - bright blue for links, buttons, active states */
-  --md-accent-fg-color: hsl(218, 92%, 77%);         /* Bright blue primary (#D4E4FF) */
-  --md-accent-fg-color--transparent: hsla(218, 92%, 77%, 0.1);
+  /* Accent - bright pink for links, buttons, active states */
+  --md-accent-fg-color: hsl(317, 100%, 79%);         /* Bright pink primary (#FFD4F5) */
+  --md-accent-fg-color--transparent: hsla(317, 100%, 79%, 0.1);
 
-  /* Background colors with blue hue */
-  --md-default-bg-color: hsl(218, 30%, 8%);         /* Blue-tinted dark background (#0F1419) */
-  --md-default-fg-color: hsl(218, 20%, 90%);        /* Text primary (#E6EAF0) */
-  --md-default-fg-color--light: hsl(218, 15%, 76%); /* Text secondary (#C4CAD0) */
+  /* Background colors with pink/magenta hue */
+  --md-default-bg-color: hsl(317, 35%, 8%);         /* Pink-tinted dark background (#1A0F17) */
+  --md-default-fg-color: hsl(317, 25%, 90%);        /* Text primary (#F5E6F0) */
+  --md-default-fg-color--light: hsl(317, 20%, 76%); /* Text secondary (#D0C4CA) */
 
-  /* Code block colors with blue hue */
-  --md-code-bg-color: hsl(218, 28%, 14%);           /* Blue-tinted code background (#1A2330) */
-  --md-code-fg-color: hsl(218, 20%, 90%);           /* #E6EAF0 */
+  /* Code block colors with pink/magenta hue */
+  --md-code-bg-color: hsl(317, 33%, 14%);           /* Pink-tinted code background (#2A1F25) */
+  --md-code-fg-color: hsl(317, 25%, 90%);           /* #F5E6F0 */
 
-  /* Links - use bright blue */
-  --md-typeset-a-color: hsl(218, 92%, 77%);         /* #D4E4FF */
+  /* Links - use bright pink */
+  --md-typeset-a-color: hsl(317, 100%, 79%);         /* #FFD4F5 */
 
   /* Table of contents active item */
-  --md-typeset-table-color: hsl(218, 28%, 14%);     /* #1A2330 */
+  --md-typeset-table-color: hsl(317, 33%, 14%);     /* #2A1F25 */
 }
 
-/* Enhanced blue highlights for dark mode */
+/* Enhanced pink/magenta highlights for dark mode */
 [data-md-color-scheme="slate"] {
   /* Sidebar active nav item */
   .md-nav__link--active {
-    color: hsl(218, 92%, 77%) !important; /* #D4E4FF */
+    color: hsl(317, 100%, 79%) !important; /* #FFD4F5 */
   }
 
   /* Hover states */
   .md-nav__link:hover {
-    color: hsl(218, 70%, 89%) !important; /* Light blue */
+    color: hsl(317, 85%, 89%) !important; /* Light pink */
   }
 
   /* Search highlights */
   .md-search-result__meta {
-    background-color: hsl(218, 28%, 14%);
+    background-color: hsl(317, 33%, 14%);
   }
 
   /* Admonition headers */
   .md-typeset .admonition-title {
-    background-color: hsla(218, 92%, 77%, 0.1);
+    background-color: hsla(317, 100%, 79%, 0.1);
   }
 }
 
@@ -66,54 +66,54 @@
   border-radius: 44px !important;        /* Match project button radius */
 }
 
-/* Primary button - filled blue */
+/* Primary button - filled pink/magenta */
 .md-button--primary {
-  background-color: hsl(218, 87%, 70%) !important; /* #C4D8FB */
+  background-color: hsl(317, 99%, 75%) !important; /* #FFC7EF */
   color: white !important;
-  border-color: hsl(218, 87%, 70%) !important;     /* #C4D8FB */
+  border-color: hsl(317, 99%, 75%) !important;     /* #FFC7EF */
 }
 
 .md-button--primary:hover {
-  background-color: hsl(218, 92%, 77%) !important; /* #D4E4FF */
-  border-color: hsl(218, 92%, 77%) !important;     /* #D4E4FF */
+  background-color: hsl(317, 100%, 79%) !important; /* #FFD4F5 */
+  border-color: hsl(317, 100%, 79%) !important;     /* #FFD4F5 */
 }
 
 [data-md-color-scheme="slate"] .md-button--primary {
-  background-color: hsl(218, 92%, 77%) !important; /* #D4E4FF */
-  color: hsl(218, 30%, 8%) !important;             /* #0F1419 */
-  border-color: hsl(218, 92%, 77%) !important;     /* #D4E4FF */
+  background-color: hsl(317, 100%, 79%) !important; /* #FFD4F5 */
+  color: hsl(317, 35%, 8%) !important;             /* #1A0F17 */
+  border-color: hsl(317, 100%, 79%) !important;     /* #FFD4F5 */
 }
 
 [data-md-color-scheme="slate"] .md-button--primary:hover {
   background-color: transparent !important;
-  color: hsl(218, 92%, 77%) !important;            /* #D4E4FF */
-  border-color: hsl(218, 92%, 77%) !important;     /* #D4E4FF */
+  color: hsl(317, 100%, 79%) !important;            /* #FFD4F5 */
+  border-color: hsl(317, 100%, 79%) !important;     /* #FFD4F5 */
 }
 
-/* Secondary button - outlined blue */
+/* Secondary button - outlined pink/magenta */
 .md-button:not(.md-button--primary) {
-  color: hsl(218, 87%, 70%) !important;            /* #C4D8FB */
-  border-color: hsl(218, 87%, 70%) !important;     /* #C4D8FB */
+  color: hsl(317, 99%, 75%) !important;            /* #FFC7EF */
+  border-color: hsl(317, 99%, 75%) !important;     /* #FFC7EF */
 }
 
 .md-button:not(.md-button--primary):hover {
-  background-color: hsla(218, 92%, 77%, 0.1) !important;
-  border-color: hsl(218, 92%, 77%) !important;     /* #D4E4FF */
+  background-color: hsla(317, 100%, 79%, 0.1) !important;
+  border-color: hsl(317, 100%, 79%) !important;     /* #FFD4F5 */
 }
 
 [data-md-color-scheme="slate"] .md-button:not(.md-button--primary) {
-  color: hsl(218, 92%, 77%) !important;            /* #D4E4FF */
-  border-color: hsl(218, 92%, 77%) !important;     /* #D4E4FF */
+  color: hsl(317, 100%, 79%) !important;            /* #FFD4F5 */
+  border-color: hsl(317, 100%, 79%) !important;     /* #FFD4F5 */
 }
 
 [data-md-color-scheme="slate"] .md-button:not(.md-button--primary):hover {
-  background-color: hsla(218, 92%, 77%, 0.1) !important;
-  border-color: hsl(218, 70%, 89%) !important;     /* Light blue */
+  background-color: hsla(317, 100%, 79%, 0.1) !important;
+  border-color: hsl(317, 85%, 89%) !important;     /* Light pink */
 }
 
-/* Additional blue-tinted backgrounds */
+/* Additional pink/magenta-tinted backgrounds */
 [data-md-color-scheme="slate"] .md-header {
-  background-color: hsl(218, 30%, 8%);             /* #0F1419 */
+  background-color: hsl(317, 35%, 8%);             /* #1A0F17 */
 }
 
 /* Logo styling */
@@ -141,8 +141,8 @@
 
 /* Tabs styling */
 [data-md-color-scheme="slate"] .md-tabs {
-  background-color: hsl(218, 30%, 8%);             /* #0F1419 */
-  border-bottom: 0.05rem solid hsla(218, 92%, 77%, 0.1);
+  background-color: hsl(317, 35%, 8%);             /* #1A0F17 */
+  border-bottom: 0.05rem solid hsla(317, 100%, 79%, 0.1);
 }
 
 /* Code blocks with subtle borders */
@@ -152,7 +152,7 @@
 
 /* Navigation path breadcrumbs */
 [data-md-color-scheme="slate"] .md-path {
-  color: hsl(270, 15%, 76%);                       /* #CAC4D0 */
+  color: hsl(317, 20%, 76%);                       /* #D0C4CA */
 }
 
 /* Admonition styling to match mkdocs-material style */
@@ -165,10 +165,10 @@
 
 /* Only content links (markdown content) use accent color - exclude nav, buttons, etc. */
 .md-typeset a:not(.md-button):not(.md-nav__link):not(.md-header__button):not(.md-footer__link):not(.md-search-result__link) {
-  color: hsl(218, 92%, 77%) !important;            /* #D4E4FF */
+  color: hsl(317, 100%, 79%) !important;            /* #FFD4F5 */
 }
 
 .md-typeset a:not(.md-button):not(.md-nav__link):not(.md-header__button):not(.md-footer__link):not(.md-search-result__link):hover {
-  color: hsl(218, 92%, 77%) !important;            /* #D4E4FF */
+  color: hsl(317, 100%, 79%) !important;            /* #FFD4F5 */
   opacity: 0.8;
 }
