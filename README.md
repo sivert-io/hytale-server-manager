@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/Hytale-Logo-Illustrated.png" alt="Hytale Server Manager">
+  <img src="assets/kgs-icon.svg" alt="Hytale Server Manager" width="140" height="140">
   
   # Hytale Server Manager (HSM)
   
