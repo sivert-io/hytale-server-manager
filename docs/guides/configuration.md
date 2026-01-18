@@ -6,7 +6,26 @@ Hytale Server Manager stores server data in the `data/` directory. This page exp
 
 You can install with one of two common flows:
 
-### 1. Git clone & build (recommended)
+### 1. Install from GitHub releases (recommended)
+
+```bash
+# One-line installation from GitHub releases
+arch=$(uname -m); \
+case "$arch" in \
+  x86_64)  asset="hsm-linux-amd64" ;; \
+  aarch64|arm64) asset="hsm-linux-arm64" ;; \
+  *) echo "Unsupported architecture: $arch" && exit 1 ;; \
+esac; \
+tmp=$(mktemp); \
+curl -L "https://github.com/sivert-io/hytale-server-manager/releases/latest/download/$asset" -o "$tmp" && \
+sudo install -m 0755 "$tmp" /usr/local/bin/hsm && \
+rm "$tmp" && \
+sudo hsm
+```
+
+This installs the `hsm` binary globally. Server data is stored in a `data/` directory relative to where you run `hsm`.
+
+### 2. Build from source
 
 ```bash
 git clone https://github.com/sivert-io/hytale-server-manager.git
@@ -18,8 +37,6 @@ sudo ./install.sh
 # Run the TUI
 sudo hsm
 ```
-
-This uses the default `data/` directory structure that ships with the repository.
 
 ## Data directory structure
 

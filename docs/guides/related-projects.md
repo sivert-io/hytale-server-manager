@@ -29,31 +29,15 @@ The official Hytale CLI tool for downloading and updating Hytale server files.
 
 ### hytale-auth
 
-**Location:** `scripts/hytale-auth.sh` in the HSM repository
-
 **What it is:**  
-A helper script for managing Hytale OAuth authentication.
-
-**Usage:**
-
-```bash
-# Login to Hytale account
-./scripts/hytale-auth.sh login
-
-# List profiles
-./scripts/hytale-auth.sh profile list
-
-# Select profile
-./scripts/hytale-auth.sh profile select 1
-
-# Create game session
-./scripts/hytale-auth.sh session
-```
+A helper tool for managing Hytale OAuth authentication.
 
 **How it works with HSM:**
 
-- HSM uses `hytale-auth` scripts for authentication during installation.
-- You can use these scripts manually if you need to re-authenticate or manage profiles.
+- HSM integrates with Hytale's OAuth authentication during installation.
+- The installation wizard guides you through authentication setup.
+- Authentication tokens are stored securely in `data/auth.enc` and `data/.cache/.hytale-downloader-credentials.json`.
+- You can re-authenticate via the TUI installation wizard if needed.
 
 ## Community Resources
 

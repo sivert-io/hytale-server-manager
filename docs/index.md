@@ -24,6 +24,23 @@ Terminal UI (TUI) for managing Hytale dedicated servers natively. Deploy multipl
 For most users, installing `hsm` globally and running the TUI is all you need:
 
 ```bash
+# One-line installation from GitHub releases (recommended)
+arch=$(uname -m); \
+case "$arch" in \
+  x86_64)  asset="hsm-linux-amd64" ;; \
+  aarch64|arm64) asset="hsm-linux-arm64" ;; \
+  *) echo "Unsupported architecture: $arch" && exit 1 ;; \
+esac; \
+tmp=$(mktemp); \
+curl -L "https://github.com/sivert-io/hytale-server-manager/releases/latest/download/$asset" -o "$tmp" && \
+sudo install -m 0755 "$tmp" /usr/local/bin/hsm && \
+rm "$tmp" && \
+sudo hsm            # launches the interactive TUI installer
+```
+
+**Alternative: Build from source**
+
+```bash
 # Clone the repository
 git clone https://github.com/sivert-io/hytale-server-manager.git
 cd hytale-server-manager
@@ -39,7 +56,22 @@ Read the **Getting Started** section for a full walkthrough.
 
 ## Project layout
 
-- `data/` – server data (worlds, configs, logs, tokens).
+```
+hytale-server-manager/
+├── src/                    # Go source code
+│   ├── cmd/hytale-tui/    # TUI entry point
+│   └── internal/
+│       ├── tui/           # TUI layer (user interface)
+│       └── hytale/        # Backend layer (server management)
+├── tools/                  # Helper scripts
+│   ├── release.sh         # GitHub release script
+│   └── start.sh           # Development build script
+├── data/                   # Server data (worlds, configs, logs)
+├── install.sh             # Global installation script (build from source)
+└── docs/                   # Documentation
+```
+
+Server data is stored in `data/` (worlds, configs, logs, tokens).
 
 See:
 

@@ -11,7 +11,24 @@ This guide gets you from zero to running Hytale servers in a few minutes.
 
 ## 1. Install HSM globally and run the installer wizard
 
-From your target server, clone the repository and install:
+From your target server, install from GitHub releases:
+
+```bash
+# One-line installation from GitHub releases (recommended)
+arch=$(uname -m); \
+case "$arch" in \
+  x86_64)  asset="hsm-linux-amd64" ;; \
+  aarch64|arm64) asset="hsm-linux-arm64" ;; \
+  *) echo "Unsupported architecture: $arch" && exit 1 ;; \
+esac; \
+tmp=$(mktemp); \
+curl -L "https://github.com/sivert-io/hytale-server-manager/releases/latest/download/$asset" -o "$tmp" && \
+sudo install -m 0755 "$tmp" /usr/local/bin/hsm && \
+rm "$tmp" && \
+sudo hsm            # launches the interactive TUI installer
+```
+
+**Alternative: Build from source**
 
 ```bash
 # Clone the repository

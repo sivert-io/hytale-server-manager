@@ -53,6 +53,23 @@
 Install the `hsm` binary globally:
 
 ```bash
+# One-line installation from GitHub releases (recommended)
+arch=$(uname -m); \
+case "$arch" in \
+  x86_64)  asset="hsm-linux-amd64" ;; \
+  aarch64|arm64) asset="hsm-linux-arm64" ;; \
+  *) echo "Unsupported architecture: $arch" && exit 1 ;; \
+esac; \
+tmp=$(mktemp); \
+curl -L "https://github.com/sivert-io/hytale-server-manager/releases/latest/download/$asset" -o "$tmp" && \
+sudo install -m 0755 "$tmp" /usr/local/bin/hsm && \
+rm "$tmp" && \
+sudo hsm            # launches the interactive TUI installer
+```
+
+**Alternative: Build from source**
+
+```bash
 # Clone the repository
 git clone https://github.com/sivert-io/hytale-server-manager.git
 cd hytale-server-manager

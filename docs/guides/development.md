@@ -22,18 +22,23 @@ hytale-server-manager/
 │       │   ├── model.go          # Main state machine, Update/View
 │       │   ├── install_wizard.go # Installation wizard
 │       │   ├── status.go         # Server status polling
-│       │   ├── viewport.go       # Viewport-based views
-│       │   └── commands.go       # TUI command wrappers
+│       │   ├── commands.go       # TUI command wrappers
+│       │   └── version.go        # Version information
 │       └── hytale/               # Backend layer (game operations)
 │           ├── bootstrap.go      # Server installation/setup
 │           ├── servers.go        # Server lifecycle management
 │           ├── tmux.go           # Tmux session management
 │           ├── update.go         # Game/plugin updates
 │           └── consts.go         # Defaults and constants
-├── scripts/                      # Server scripts (hytale-auth, etc.)
 ├── tools/                        # Helper scripts
-└── docs/                        # Documentation
+│   ├── release.sh               # GitHub release script
+│   └── start.sh                 # Development build script
+├── data/                         # Server data (worlds, configs, logs)
+├── docs/                         # Documentation
+└── install.sh                    # Global installation script (build from source)
 ```
+
+**Note:** There is no `scripts/` directory. Authentication and server scripts are handled via external tools (`hytale-downloader`, `hytale-auth`).
 
 ## Technology Stack
 
@@ -123,10 +128,10 @@ The `Update()` method handles these messages and updates the UI.
 ### Bootstrap (`bootstrap.go`)
 
 Main installation function that:
-- Creates directory structure (`data/master-install`, `data/server-1`, etc.)
+- Creates directory structure (`data/Server/`, `data/universe/`, etc.)
 - Downloads/installs Hytale server files via `hytale-downloader`
 - Configures server instances
-- Writes configuration files
+- Writes configuration files (`config.json`, `permissions.json`, etc.)
 
 **Key Function:**
 ```go
@@ -162,11 +167,13 @@ Handle game and plugin updates:
 Defaults and constants:
 ```go
 const (
-    DataDirBase = "/home/hytale"
     DefaultHytaleUser = "hytale"
     DefaultNumServers = 1
     DefaultBasePort = 5520
     DefaultJVMArgs = "-Xms4G -Xmx8G"
+    TmuxSessionPrefix = "hytale-server-"
+    DataDirBase = "./data"  // Relative to where hsm is run
+    ConfigDir = "./data"
     // ...
 )
 ```

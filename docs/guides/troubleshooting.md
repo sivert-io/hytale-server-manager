@@ -51,10 +51,7 @@ If you see authentication errors:
    - Go to **Install** tab
    - Re-run the installation wizard (or update authentication)
 
-3. **Manual authentication**:
-   ```bash
-   ./scripts/hytale-auth.sh login
-   ```
+3. **Manual authentication**: Use `hytale-downloader` directly or the TUI installation wizard to re-authenticate.
 
 ## hytale-downloader not found
 

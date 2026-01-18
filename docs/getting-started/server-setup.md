@@ -43,10 +43,27 @@ By default, servers use incrementing ports. A typical layout is:
 
 After installation, your key locations are:
 
-- The cloned repo (or download directory) for `hytale-server-manager`.
-- The `data/` directory containing server data (worlds, configs, logs, tokens).
+- The `hsm` binary installed to `/usr/local/bin/hsm` (globally available).
+- The `data/` directory (default: `./data/` from where you run `hsm`) containing server data (worlds, configs, logs, tokens).
 
 Server instances are managed via tmux sessions, with each server running in its own session (e.g., `hytale-server-1`, `hytale-server-2`).
+
+### Project structure
+
+```
+hytale-server-manager/
+├── src/                    # Go source code (if cloned)
+│   ├── cmd/hytale-tui/    # TUI entry point
+│   └── internal/
+│       ├── tui/           # TUI layer (user interface)
+│       └── hytale/        # Backend layer (server management)
+├── tools/                  # Helper scripts (if cloned)
+│   ├── release.sh         # GitHub release script
+│   └── start.sh           # Development build script
+├── data/                   # Server data (worlds, configs, logs)
+├── install.sh             # Global installation script (build from source)
+└── docs/                   # Documentation
+```
 
 ## Hytale authentication
 
