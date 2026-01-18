@@ -1,0 +1,174 @@
+/* Hytale Server Manager theme - Blue hue from kgs-icon.svg (#C4D8FB) */
+
+:root {
+  /* Light mode overrides */
+  --md-primary-fg-color: hsl(218, 87%, 70%);        /* Blue for light mode (#C4D8FB base) */
+  --md-primary-fg-color--light: hsl(218, 97%, 92%); /* Light blue (#E8F0FF) */
+  --md-primary-fg-color--dark: hsl(218, 67%, 40%);  /* Dark blue (#4A6FA5) */
+  --md-accent-fg-color: hsl(218, 92%, 77%);         /* Bright blue for accents (#D4E4FF) */
+  --md-typeset-a-color: hsl(218, 92%, 77%);         /* Links use accent blue in light mode */
+}
+
+[data-md-color-scheme="slate"] {
+  /* Dark mode */
+
+  /* Header/Navbar - dark blue-tinted background */
+  --md-primary-fg-color: hsl(218, 30%, 8%);         /* Dark blue-tinted background (#0F1419) */
+  --md-primary-fg-color--light: hsl(218, 70%, 89%); /* Light blue (#D4E4FF) */
+  --md-primary-fg-color--dark: hsl(218, 15%, 5%);  /* Very dark blue (#0A0D12) */
+  --md-primary-bg-color: hsl(218, 20%, 90%);        /* Light blue-gray (#E6EAF0) */
+
+  /* Accent - bright blue for links, buttons, active states */
+  --md-accent-fg-color: hsl(218, 92%, 77%);         /* Bright blue primary (#D4E4FF) */
+  --md-accent-fg-color--transparent: hsla(218, 92%, 77%, 0.1);
+
+  /* Background colors with blue hue */
+  --md-default-bg-color: hsl(218, 30%, 8%);         /* Blue-tinted dark background (#0F1419) */
+  --md-default-fg-color: hsl(218, 20%, 90%);        /* Text primary (#E6EAF0) */
+  --md-default-fg-color--light: hsl(218, 15%, 76%); /* Text secondary (#C4CAD0) */
+
+  /* Code block colors with blue hue */
+  --md-code-bg-color: hsl(218, 28%, 14%);           /* Blue-tinted code background (#1A2330) */
+  --md-code-fg-color: hsl(218, 20%, 90%);           /* #E6EAF0 */
+
+  /* Links - use bright blue */
+  --md-typeset-a-color: hsl(218, 92%, 77%);         /* #D4E4FF */
+
+  /* Table of contents active item */
+  --md-typeset-table-color: hsl(218, 28%, 14%);     /* #1A2330 */
+}
+
+/* Enhanced blue highlights for dark mode */
+[data-md-color-scheme="slate"] {
+  /* Sidebar active nav item */
+  .md-nav__link--active {
+    color: hsl(218, 92%, 77%) !important; /* #D4E4FF */
+  }
+
+  /* Hover states */
+  .md-nav__link:hover {
+    color: hsl(218, 70%, 89%) !important; /* Light blue */
+  }
+
+  /* Search highlights */
+  .md-search-result__meta {
+    background-color: hsl(218, 28%, 14%);
+  }
+
+  /* Admonition headers */
+  .md-typeset .admonition-title {
+    background-color: hsla(218, 92%, 77%, 0.1);
+  }
+}
+
+/* Rounded corners and colors to match project */
+.md-button {
+  border-radius: 44px !important;        /* Match project button radius */
+}
+
+/* Primary button - filled blue */
+.md-button--primary {
+  background-color: hsl(218, 87%, 70%) !important; /* #C4D8FB */
+  color: white !important;
+  border-color: hsl(218, 87%, 70%) !important;     /* #C4D8FB */
+}
+
+.md-button--primary:hover {
+  background-color: hsl(218, 92%, 77%) !important; /* #D4E4FF */
+  border-color: hsl(218, 92%, 77%) !important;     /* #D4E4FF */
+}
+
+[data-md-color-scheme="slate"] .md-button--primary {
+  background-color: hsl(218, 92%, 77%) !important; /* #D4E4FF */
+  color: hsl(218, 30%, 8%) !important;             /* #0F1419 */
+  border-color: hsl(218, 92%, 77%) !important;     /* #D4E4FF */
+}
+
+[data-md-color-scheme="slate"] .md-button--primary:hover {
+  background-color: transparent !important;
+  color: hsl(218, 92%, 77%) !important;            /* #D4E4FF */
+  border-color: hsl(218, 92%, 77%) !important;     /* #D4E4FF */
+}
+
+/* Secondary button - outlined blue */
+.md-button:not(.md-button--primary) {
+  color: hsl(218, 87%, 70%) !important;            /* #C4D8FB */
+  border-color: hsl(218, 87%, 70%) !important;     /* #C4D8FB */
+}
+
+.md-button:not(.md-button--primary):hover {
+  background-color: hsla(218, 92%, 77%, 0.1) !important;
+  border-color: hsl(218, 92%, 77%) !important;     /* #D4E4FF */
+}
+
+[data-md-color-scheme="slate"] .md-button:not(.md-button--primary) {
+  color: hsl(218, 92%, 77%) !important;            /* #D4E4FF */
+  border-color: hsl(218, 92%, 77%) !important;     /* #D4E4FF */
+}
+
+[data-md-color-scheme="slate"] .md-button:not(.md-button--primary):hover {
+  background-color: hsla(218, 92%, 77%, 0.1) !important;
+  border-color: hsl(218, 70%, 89%) !important;     /* Light blue */
+}
+
+/* Additional blue-tinted backgrounds */
+[data-md-color-scheme="slate"] .md-header {
+  background-color: hsl(218, 30%, 8%);             /* #0F1419 */
+}
+
+/* Logo styling */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 2rem;
+}
+
+/* Clean separator between header and content */
+[data-md-color-scheme="slate"] .md-header {
+  box-shadow: 0 0 0.2rem rgba(0,0,0,.1), 0 0.2rem 0.4rem rgba(0,0,0,.2);
+}
+
+/* Improve sidebar appearance */
+[data-md-color-scheme="slate"] .md-sidebar {
+  background-color: transparent;
+}
+
+/* Better content cards */
+[data-md-color-scheme="slate"] .md-typeset .admonition,
+[data-md-color-scheme="slate"] .md-typeset details {
+  border: none;
+  box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,.05), 0 0 0.05rem rgba(0,0,0,.1);
+}
+
+/* Tabs styling */
+[data-md-color-scheme="slate"] .md-tabs {
+  background-color: hsl(218, 30%, 8%);             /* #0F1419 */
+  border-bottom: 0.05rem solid hsla(218, 92%, 77%, 0.1);
+}
+
+/* Code blocks with subtle borders */
+[data-md-color-scheme="slate"] .md-typeset pre > code {
+  border-radius: 0.5rem;
+}
+
+/* Navigation path breadcrumbs */
+[data-md-color-scheme="slate"] .md-path {
+  color: hsl(270, 15%, 76%);                       /* #CAC4D0 */
+}
+
+/* Admonition styling to match mkdocs-material style */
+/* Border-left style like the reference documentation */
+.md-typeset .admonition,
+.md-typeset details {
+  border-width: 0;
+  border-left-width: 4px;
+}
+
+/* Only content links (markdown content) use accent color - exclude nav, buttons, etc. */
+.md-typeset a:not(.md-button):not(.md-nav__link):not(.md-header__button):not(.md-footer__link):not(.md-search-result__link) {
+  color: hsl(218, 92%, 77%) !important;            /* #D4E4FF */
+}
+
+.md-typeset a:not(.md-button):not(.md-nav__link):not(.md-header__button):not(.md-footer__link):not(.md-search-result__link):hover {
+  color: hsl(218, 92%, 77%) !important;            /* #D4E4FF */
+  opacity: 0.8;
+}

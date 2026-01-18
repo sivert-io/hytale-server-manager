@@ -1,0 +1,19 @@
+# Data directory (server worlds, configs, logs - don't commit server data)
+data/
+
+# Metrics from benchmarking
+metrics/
+
+# Logs
+*.log
+
+# Build artifacts
+/tmp/
+*.test
+
+# Go build cache
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
