@@ -2,7 +2,9 @@ package hytale
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
+	"path/filepath"
 	"strconv"
 	"strings"
 )
@@ -32,7 +34,9 @@ func (tm *TmuxManager) HasSession(server int) bool {
 }
 
 // Start launches a Hytale server in a tmux session
-func (tm *TmuxManager) Start(server int, dataDir, jarPath string, jvmArgs string) error {
+// If sessionTokens is provided, servers start authenticated (no need for /auth login device)
+// Per Server Provider Authentication Guide: https://support.hytale.com/hc/en-us/articles/45328341414043
+func (tm *TmuxManager) Start(server int, dataDir, jarPath string, jvmArgs string, backupEnabled bool, backupFrequency int, sessionTokens *SessionTokens) error {
 	sessionName := tm.SessionName(server)
 
 	// Check if session already exists
@@ -40,13 +44,46 @@ func (tm *TmuxManager) Start(server int, dataDir, jarPath string, jvmArgs string
 		return fmt.Errorf("session %s already exists", sessionName)
 	}
 
-	// Build Java command
+	// Calculate port from basePort (Hytale doesn't store port in config.json, it's passed via --bind)
 	port := tm.basePort + (server - 1)
 	
 	// Parse JVM args into array
 	args := strings.Fields(jvmArgs)
 	args = append(args, "-jar", jarPath)
+	
+	// Hytale server arguments (Host Havoc optimization guide)
+	// --bind: Bind to specific port
 	args = append(args, "--bind", fmt.Sprintf("0.0.0.0:%d", port))
+	
+	// --assets: Specify assets file location (relative to server directory)
+	assetsPath := filepath.Join(dataDir, "Assets.zip")
+	// Also check master-install location
+	if _, err := os.Stat(assetsPath); os.IsNotExist(err) {
+		masterAssets := filepath.Join(DataDirBase, "master-install", "Assets.zip")
+		if _, err := os.Stat(masterAssets); err == nil {
+			assetsPath = masterAssets
+		}
+	}
+	if _, err := os.Stat(assetsPath); err == nil {
+		args = append(args, "--assets", assetsPath)
+	}
+	
+	// --backup: Enable automatic backups (if enabled)
+	if backupEnabled {
+		args = append(args, "--backup")
+		// --backup-frequency: Backup frequency in minutes
+		args = append(args, "--backup-frequency", fmt.Sprintf("%d", backupFrequency))
+	}
+
+	// Add session and identity tokens if provided (per Server Provider Authentication Guide)
+	// This allows servers to start authenticated without manual /auth login device
+	if sessionTokens != nil && sessionTokens.SessionToken != "" && sessionTokens.IdentityToken != "" {
+		args = append(args, "--session-token", sessionTokens.SessionToken)
+		args = append(args, "--identity-token", sessionTokens.IdentityToken)
+		if sessionTokens.OwnerUUID != "" {
+			args = append(args, "--owner-uuid", sessionTokens.OwnerUUID)
+		}
+	}
 
 	// Create tmux session and run server
 	cmd := exec.Command("tmux", "new-session", "-d", "-s", sessionName,
@@ -76,11 +113,11 @@ func (tm *TmuxManager) Stop(server int) error {
 	return cmd.Run()
 }
 
-// StartAll starts all servers
-func (tm *TmuxManager) StartAll(numServers int, dataDirBase, jarPath string, jvmArgs string) error {
+// StartAll starts all servers with optional session tokens
+func (tm *TmuxManager) StartAll(numServers int, dataDirBase, jarPath string, jvmArgs string, backupEnabled bool, backupFrequency int, sessionTokens *SessionTokens) error {
 	for i := 1; i <= numServers; i++ {
-		dataDir := fmt.Sprintf("%s/server-%d", dataDirBase, i)
-		if err := tm.Start(i, dataDir, jarPath, jvmArgs); err != nil {
+		serverDir := GetServerDir(i)
+		if err := tm.Start(i, serverDir, jarPath, jvmArgs, backupEnabled, backupFrequency, sessionTokens); err != nil {
 			return fmt.Errorf("failed to start server %d: %w", i, err)
 		}
 	}
@@ -103,6 +140,8 @@ func (tm *TmuxManager) Status(numServers int) []ServerStatus {
 	
 	for i := 1; i <= numServers; i++ {
 		sessionName := tm.SessionName(i)
+		
+		// Calculate port from basePort (Hytale doesn't store port in config.json, it's passed via --bind)
 		port := tm.basePort + (i - 1)
 		
 		running := tm.HasSession(i)

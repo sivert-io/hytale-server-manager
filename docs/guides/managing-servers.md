@@ -18,14 +18,50 @@ From the TUI you can:
 - **Run game or plugin updates**.
 - **View server configuration**.
 
-## Server operations via TUI
+## TUI Navigation
 
-Navigate the TUI with arrow keys:
+The TUI uses keyboard navigation:
 
-- **Install Tab** – Run the installation wizard or reconfigure servers.
-- **Updates Tab** – Update game files or plugins.
-- **Servers Tab** – Start/stop/restart all servers, view logs, scale up/down.
-- **Tools Tab** – Edit configs, view detailed status.
+- **Arrow Keys (↑/↓)** or **j/k**: Navigate menu items
+- **Arrow Keys (←/→)** or **h/l**: Switch between tabs
+- **Enter**: Select/execute action
+- **Esc** or **q**: Exit current view (returns to main menu)
+- **Ctrl+C** or **q** (from main menu): Quit application
+
+## TUI Tabs
+
+### Install Tab
+
+- **Run Installation Wizard**: Interactive wizard to configure and install servers
+  - Configure number of servers, ports, hostname, max players
+  - Set JVM arguments and admin password
+  - Automatically installs Java 25 and dependencies
+  - Guides through Hytale OAuth authentication
+  - Downloads server files via `hytale-downloader`
+
+### Updates Tab
+
+- **Update Game**: Download and install latest Hytale server files
+- **Update Plugins**: Update server plugins and addons
+- **Enable Auto-Update Monitor**: Automatically check for updates (future feature)
+
+### Servers Tab
+
+- **Start All Servers**: Launch all server instances
+- **Stop All Servers**: Gracefully stop all running servers
+- **Restart All Servers**: Restart all server instances
+- **View Server Logs**: View logs for a specific server
+- **Scale Up Servers**: Add more server instances
+- **Scale Down Servers**: Remove server instances
+
+### Tools Tab
+
+- **Edit Server Configs**: Edit shared server configuration files
+- **View Server Status**: View detailed server status dashboard
+  - Shows all servers with their current status (running/stopped)
+  - Displays port numbers and tmux session names
+  - Auto-updates every 2 seconds
+  - Color-coded status indicators
 
 ## Console and logs via tmux
 
@@ -65,10 +101,27 @@ Each server runs in its own tmux session named `hytale-server-N` (where N is the
 
 ## Real-time status
 
-The TUI polls server status every 2 seconds and displays:
+The TUI provides real-time server status in multiple ways:
 
-- Number of servers running vs stopped
-- Live status in the status bar
-- Server port information
+### Status Bar
 
-Status is updated automatically after server operations (start/stop/restart).
+The bottom status bar shows:
+- Number of servers running vs stopped (e.g., "2 running, 1 stopped")
+- Current operation status (e.g., "Starting all servers...")
+- Error messages if operations fail
+
+Status is updated automatically every 2 seconds and after server operations (start/stop/restart).
+
+### Server Status Page
+
+Access the detailed status page via **Tools Tab → View Server Status**:
+
+- **Table view** showing all servers:
+  - Server ID
+  - Status (running/stopped) with color coding
+  - Port number
+  - Tmux session name
+- **Auto-refreshes** every 2 seconds
+- **Real-time updates** when servers start/stop
+
+This page is useful for monitoring all servers at a glance and verifying their current state.

@@ -88,18 +88,30 @@ const (
     viewMain viewMode = iota
     viewInstallWizard
     viewViewport
+    viewActionResult
+    viewEditServerConfigs
+    viewServerStatus
     // ... other views
 )
 ```
+
+**Key Views:**
+- `viewMain`: Main menu with tabs and menu items (tab bar visible)
+- `viewInstallWizard`: Interactive installation wizard with form fields
+- `viewViewport`: Scrollable viewport for logs and other content
+- `viewServerStatus`: Real-time server status dashboard with table view
+- `viewEditServerConfigs`: Server configuration editor (future)
 
 ### 3. Tabbed Menu System
 
 Organize menu items into tabs:
 
-- **Install Tab**: Installation wizard, dependencies
-- **Updates Tab**: Game updates, plugin updates
-- **Servers Tab**: Status dashboard, logs, start/stop/restart, scale up/down
-- **Tools Tab**: Config editing, cleanup, utilities
+- **Install Tab**: Installation wizard with interactive form
+- **Updates Tab**: Game updates, plugin updates, auto-update monitor
+- **Servers Tab**: Start/stop/restart all servers, view logs, scale up/down
+- **Tools Tab**: Edit server configs, view detailed server status dashboard
+
+Each tab has its own menu items that execute specific actions. The tab bar is only visible in the main view (`viewMain`).
 
 ### 4. Command Pattern
 

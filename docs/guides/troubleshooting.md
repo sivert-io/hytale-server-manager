@@ -10,7 +10,11 @@ Check server status and logs via the TUI:
 sudo hsm
 ```
 
-Then navigate to **Servers** tab to view status and logs. Or attach directly to tmux session:
+Then navigate to:
+- **Tools Tab → View Server Status**: See detailed status of all servers (running/stopped, ports, sessions)
+- **Servers Tab → View Server Logs**: View logs for specific servers
+
+Or attach directly to tmux session:
 
 ```bash
 tmux attach-session -t hytale-server-1

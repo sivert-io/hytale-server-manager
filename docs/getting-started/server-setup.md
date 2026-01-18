@@ -69,12 +69,12 @@ hytale-server-manager/
 
 HSM uses OAuth2 authentication for Hytale servers:
 
-1. **Device code flow** – The installation wizard guides you through authenticating with your Hytale account.
+1. **Device code flow** – The installation wizard (Install Tab → Run Installation Wizard) guides you through authenticating with your Hytale account.
 2. **Token storage** – OAuth tokens are stored securely in `data/` and refreshed automatically.
 3. **Profile selection** – Choose which Hytale profile to use for server management.
 4. **Game sessions** – Each server creates a game session for authentication.
 
-See the installation wizard in the TUI for step-by-step authentication setup.
+The installation wizard in the TUI provides step-by-step authentication setup. You can re-run the wizard at any time from the **Install Tab** if you need to re-authenticate.
 
 ## Running the installer
 

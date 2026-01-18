@@ -17,3 +17,6 @@ metrics/
 *.dll
 *.so
 *.dylib
+
+dist/
+build/

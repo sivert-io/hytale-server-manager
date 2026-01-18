@@ -18,4 +18,17 @@ echo "[hytale-server-manager] Building HSM (Hytale Server Manager CLI)..."
 go build -ldflags="-s -w" -o "${BUILD_DIR}/hsm" ./src/cmd/hytale-tui
 
 echo "[hytale-server-manager] Launching HSM with DEBUG logging enabled..."
+
+# Only show sudo warning if not running as root
+if [ "$EUID" -ne 0 ]; then
+	echo ""
+	echo "⚠️  Note: HSM requires sudo privileges for:"
+	echo "   • Creating system user (hytaleservermanager)"
+	echo "   • Creating /var/lib/hytale directory"
+	echo "   • Managing server processes"
+	echo ""
+	echo "If you see permission errors, run: sudo ${BUILD_DIR}/hsm"
+	echo ""
+fi
+
 DEBUG=1 exec "${BUILD_DIR}/hsm"

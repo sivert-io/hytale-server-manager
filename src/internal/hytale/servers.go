@@ -8,21 +8,59 @@ import (
 )
 
 // AddServerInstanceWithContext adds a new server instance
+// Enforces MaxServersPerLicense limit per Hytale Server Manual
 func AddServerInstanceWithContext(ctx context.Context, numServers int, basePort int) error {
 	newServerNum := numServers + 1
-	dataDir := fmt.Sprintf("%s/server-%d", DataDirBase, newServerNum)
+	
+	// Enforce server limit per Hytale Server Manual
+	// Default limit: 100 servers per game license
+	if newServerNum > MaxServersPerLicense {
+		return fmt.Errorf("maximum %d servers allowed per game license (Hytale Server Manual). Additional licenses or Server Provider account required for more", MaxServersPerLicense)
+	}
+	
+	serverDir := GetServerDir(newServerNum)
 
 	// Create server directory
-	if err := os.MkdirAll(dataDir, 0755); err != nil {
+	if err := os.MkdirAll(serverDir, 0755); err != nil {
 		return fmt.Errorf("failed to create server directory: %w", err)
 	}
 
-	// TODO: Copy config files, create server config, etc.
-	// This is a placeholder - actual implementation would:
-	// - Copy base configs from master-install or server-1
-	// - Update port numbers
-	// - Update server.cfg/properties.json
-	// - Create symlinks if needed
+	// Create server-specific directories
+	os.MkdirAll(filepath.Join(serverDir, "universe"), 0755)
+	os.MkdirAll(filepath.Join(serverDir, "logs"), 0755)
+
+	// Copy from master-install
+	if err := CopyMasterToServer(ctx, newServerNum); err != nil {
+		return fmt.Errorf("failed to copy master files: %w", err)
+	}
+
+	// Copy shared configs
+	if err := CopySharedToServer(ctx, newServerNum); err != nil {
+		return fmt.Errorf("failed to copy shared configs: %w", err)
+	}
+
+	// Create server-specific config.json
+	// Read config from server-1 to get defaults, or use defaults
+	port := basePort + (newServerNum - 1)
+	hostname := fmt.Sprintf("%s-%d", DefaultHostnamePrefix, newServerNum)
+	
+	// Try to get defaults from server-1
+	maxPlayers := DefaultMaxPlayers
+	maxViewRadius := DefaultMaxViewRadius
+	gameMode := DefaultGameMode
+	serverPassword := ""
+	if config, err := ReadConfig(GetServerConfigPath(1)); err == nil {
+		maxPlayers = config.MaxPlayers
+		maxViewRadius = config.MaxViewRadius
+		if config.Defaults.GameMode != "" {
+			gameMode = config.Defaults.GameMode
+		}
+		serverPassword = config.Password
+	}
+
+	if err := UpdateServerConfig(newServerNum, port, hostname, maxPlayers, maxViewRadius, gameMode, serverPassword); err != nil {
+		return fmt.Errorf("failed to create config: %w", err)
+	}
 
 	return nil
 }
@@ -36,8 +74,13 @@ func RemoveLastServerInstance(numServers int) error {
 	lastServer := numServers
 	dataDir := fmt.Sprintf("%s/server-%d", DataDirBase, lastServer)
 
-	// TODO: Stop server if running
-	// TODO: Remove directory
+	// Stop server if running
+	tm := NewTmuxManager(DefaultBasePort)
+	if tm.HasSession(lastServer) {
+		_ = tm.Stop(lastServer) // Continue even if stop fails
+	}
+
+	// Remove directory
 	if err := os.RemoveAll(dataDir); err != nil {
 		return fmt.Errorf("failed to remove server directory: %w", err)
 	}

@@ -59,10 +59,18 @@ sudo hsm            # run all TUI actions (install, updates, status, logs)
 
 From the TUI you can:
 
-- Install or repair servers (wizard).
-- Start/stop/restart all servers.
-- Check status and logs.
-- Run game/plugin updates.
+- **Install Tab**: Run the installation wizard to set up servers
+- **Updates Tab**: Update game files or plugins
+- **Servers Tab**: Start/stop/restart all servers, view logs, scale servers
+- **Tools Tab**: Edit server configs, view detailed server status
+
+### TUI Navigation
+
+- **Arrow Keys (↑/↓)** or **j/k**: Navigate menu items
+- **Arrow Keys (←/→)** or **h/l**: Switch between tabs
+- **Enter**: Select/execute action
+- **Esc** or **q**: Exit current view (returns to main menu)
+- **Ctrl+C** or **q** (from main menu): Quit application
 
 ## 3. Next steps
 

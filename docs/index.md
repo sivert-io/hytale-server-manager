@@ -13,7 +13,9 @@ Terminal UI (TUI) for managing Hytale dedicated servers natively. Deploy multipl
 
 - **Multi-server deployment**: Spin up multiple Hytale servers with a single command.
 - **Native Java**: Best performance with lower CPU and memory usage (no Docker overhead).
-- **Auto-installation**: Automatic Java 25 setup and hytale-downloader installation.
+- **Interactive TUI**: Terminal-based interface with tabbed navigation for all operations.
+- **Installation wizard**: Guided setup with automatic dependency installation (Java 25, tmux, etc.).
+- **Real-time status**: Live server status dashboard showing running/stopped servers, ports, and sessions.
 - **Safe updates**: Handles game and plugin updates automatically while preserving your configs.
 - **OAuth authentication**: Integrated Hytale authentication with token management.
 - **Persistent data**: Worlds, tokens, and logs survive restarts.
@@ -73,10 +75,21 @@ hytale-server-manager/
 
 Server data is stored in `data/` (worlds, configs, logs, tokens).
 
+## TUI Features
+
+The HSM TUI provides a complete interface for managing your servers:
+
+- **Install Tab**: Interactive wizard for initial setup and configuration
+- **Updates Tab**: Update game files and plugins
+- **Servers Tab**: Start/stop/restart servers, view logs, scale instances
+- **Tools Tab**: Edit configs, view detailed server status dashboard
+
+All operations are accessible via keyboard navigation (arrow keys, Enter, Esc).
+
 See:
 
-- **Getting Started → Quick Start** – first-time setup.
-- **Guides → Managing Servers** – everyday operations.
+- **Getting Started → Quick Start** – first-time setup and TUI navigation.
+- **Guides → Managing Servers** – everyday operations and TUI features.
 - **Guides → Configuration** – customizing your servers.
 - **Guides → Auto Updates** – how updates are handled behind the scenes.
 - **Guides → Troubleshooting** – common problems and fixes.

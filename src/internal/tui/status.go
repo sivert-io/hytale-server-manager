@@ -1,7 +1,9 @@
 package tui
 
 import (
+	"context"
 	"fmt"
+	"strings"
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -70,4 +72,31 @@ func formatServerStatus(statuses []hytale.ServerStatus) string {
 	}
 
 	return s
+}
+
+// Update available message
+type updateAvailableMsg struct {
+	available    bool
+	latestVersion string
+}
+
+// Check for updates periodically
+func checkForUpdates() tea.Cmd {
+	return func() tea.Msg {
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+
+		release, isNewer, err := hytale.CheckForUpdates(ctx)
+		if err != nil {
+			// Silently fail - don't show error for update check failures
+			return updateAvailableMsg{available: false, latestVersion: ""}
+		}
+
+		if isNewer {
+			latestVersion := strings.TrimPrefix(release.TagName, "v")
+			return updateAvailableMsg{available: true, latestVersion: latestVersion}
+		}
+
+		return updateAvailableMsg{available: false, latestVersion: ""}
+	}
 }
